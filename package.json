@@ -1,0 +1,12 @@
+{
+  "name": "fc_test_backend",
+  "version": "1.0.0",
+  "description": "test backend for prototyping data models",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
