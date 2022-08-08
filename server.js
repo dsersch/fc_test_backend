@@ -11,6 +11,7 @@ connectDB()
 const userRouter = require('./routes/userRouter.js')
 const marketRouter = require('./routes/marketRouter.js')
 const voteRouter = require('./routes/voteRouter.js')
+const startupRouter = require('./routes/startupRouter.js')
 
 // initialize app
 const app = express()
@@ -21,6 +22,7 @@ app.use(express.json())
 
 // routing
 app.use('/user', userRouter)
+app.use('/startup', startupRouter)
 app.use('/vote', voteRouter)
 app.use('/market', marketRouter)
 
