@@ -11,5 +11,7 @@ router
 router
     .route('/:id')
     .get(marketController.findMarket)
+    .patch(marketController.updateMarket)
+    .delete(marketController.deleteMarket)
 
 module.exports = router

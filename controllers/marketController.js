@@ -53,3 +53,37 @@ exports.findMarket = async (req, res) => {
         })
     }
 }
+
+exports.updateMarket = async (req, res) => {
+    try {
+        const updatedMarket = await Market.findByIdAndUpdate(req.params.id, req.body, { new: true })
+
+        res.status(200).json({
+            status: 'success',
+            data: updatedMarket,
+        })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            status: 'failed',
+            message: 'failed to update market...'
+        })
+    }
+}
+
+exports.deleteMarket = async (req, res) => {
+    try {
+        await Market.findByIdAndDelete(req.params.id)
+
+        res.status(200).json({
+            status: 'success',
+            data: 'successfully deleted market...'
+        })
+    } catch {err} {
+        console.log(err)
+        res.status(500).json({
+            status: 'failed',
+            message: 'failed to delete that market...'
+        })
+    }
+}
