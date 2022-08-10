@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const Market = require('./market')
 
 const userSchema = mongoose.Schema({
     name: {
@@ -25,7 +26,10 @@ const userSchema = mongoose.Schema({
         required: true,
     },
     skills: [],
-    markets: [],
+    markets: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'Market',
+    }],
 }, {
     timestamps: true,
 })
