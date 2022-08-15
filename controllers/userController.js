@@ -147,6 +147,25 @@ exports.findUser = async (req, res) => {
     }
 }
 
+// Find User by Market
+
+exports.findUsersByMarket = async (req, res) => {
+    try {
+        const usersByMarket = await User.find({markets: { $in: [req.params.id] }}).populate('markets')
+
+        res.status(200).json({
+            status: 'success',
+            data: usersByMarket,
+        })
+    } catch (err) {
+        console.log(err)
+        res.status(404).json({
+            status: 'failed',
+            message: 'Failed to find users...'
+        })
+    }
+}
+
 exports.updateUser = async (req, res) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, {new: true})

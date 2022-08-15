@@ -16,8 +16,11 @@ router
     .route('/profile')
     .get(userController.protect, userController.findUser)
     .patch(userController.protect, userController.updateUser)
-    
 
+router
+    .route('/market/:id')
+    .get(userController.findUsersByMarket)
+    
 // testing routes, no login needed...
 router
     .route('/')
