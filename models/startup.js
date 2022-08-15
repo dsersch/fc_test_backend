@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const userController = require('../controllers/userController.js')
 
 const startUpSchema = mongoose.Schema({
     name: {
@@ -19,7 +20,8 @@ const startUpSchema = mongoose.Schema({
         unique: true,
     },
     market: {
-        type: String,
+        type: mongoose.Types.ObjectId,
+        ref: 'Market',
         required: true,
     },
     companyDescription: String,
@@ -59,6 +61,11 @@ const startUpSchema = mongoose.Schema({
     }],
 }, {
     timestamps: true,
+})
+
+startUpSchema.pre('save', async function(next) {
+    this.pod = await userController.generatePod(this.market)
+    next()
 })
 
 const Startup = mongoose.model("Startup", startUpSchema)

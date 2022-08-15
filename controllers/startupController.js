@@ -57,7 +57,7 @@ exports.findAllStartups = async (req, res) => {
 
 exports.findStartup = async (req, res) => {
     try {
-        const foundStartup = await Startup.findById(req.params.id)
+        const foundStartup = await Startup.findById(req.params.id).populate('pod')
 
         res.status(200).json({
             status: 'success',

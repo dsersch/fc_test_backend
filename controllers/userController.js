@@ -166,6 +166,17 @@ exports.findUsersByMarket = async (req, res) => {
     }
 }
 
+exports.generatePod = async (marketId) => {
+    try {
+        const podMembers = await User.find({ markets: { $in: [marketId]}}).select('_id')
+        let memberArray = []
+        podMembers.forEach(el => memberArray.push(el._id))
+        return memberArray
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 exports.updateUser = async (req, res) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, {new: true})
